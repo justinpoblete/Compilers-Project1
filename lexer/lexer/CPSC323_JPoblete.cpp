@@ -60,13 +60,13 @@ holder lexer(std::string file) {				//lexer takes in the file name and returns c
 
 
 			int fsm[7][6] = {					//finite state machine that takes in chars
-				{ 1, 3, 0, 0, 3, 5 },
-				{ 1, 1, 1, 4, 0, 5 },
-				{ 0, 2, 0, 4, 3, 5 },
-				{ 0, 3, 0, 4, 0, 5 },
-				{ 0, 0, 0, 0, 0, 5 },
-				{ 5, 5, 5, 5, 5, 6 },
-				{ 0, 0, 0, 0, 0, 0 }
+				{ 1, 2, 0, 0, 3, 5 },	//ini
+				{ 1, 1, 1, 4, 0, 5 },	//ident
+				{ 0, 2, 0, 4, 3, 5 },	//num
+				{ 0, 3, 0, 4, 0, 5 },	//float
+				{ 0, 0, 0, 0, 0, 5 },	//other
+				{ 5, 5, 5, 5, 5, 6 },	//state comment
+				{ 0, 0, 0, 0, 0, 0 }	//end comment
 			};
 			int input = 0;						//input and state start at 0
 			int state = 0;
@@ -98,6 +98,33 @@ holder lexer(std::string file) {				//lexer takes in the file name and returns c
 					state = fsm[state][input];
 					temp += arr[i];
 				}
+				
+				/*else if (arr[i] == ' ') {		//if the input is a space ^^
+					if (state == 1) {
+						output.token.push_back(checkKeyword(temp));
+						output.lexeme.push_back(temp);
+						temp.clear();
+					}
+					else if (state == 2) {
+						output.token.push_back("Integer");
+						output.lexeme.push_back(temp);
+						temp.clear();
+					}
+					else if (state == 3) {
+						output.token.push_back("Float\t");
+						output.lexeme.push_back(temp);
+						temp.clear();
+					}
+					else if (state == 5) {
+						temp.clear();
+					}
+					else if (state == 6) {
+						temp.clear();
+					}
+					input = 3;					//char is ' ' then update state
+					state = fsm[state][input];
+				}*/
+				
 				else {							//else case that handles all 'other' symbols
 					if (state == 0) {			//checks if only char is operator or seperator
 						if (isOperator(arr[i])) {	
@@ -132,7 +159,7 @@ holder lexer(std::string file) {				//lexer takes in the file name and returns c
 						}
 					}
 					else if (state == 2) {		//check if string with an 'other' char at the end of it is an int, push back both lexeme and 'other'
-						output.token.push_back("Integer");
+						output.token.push_back("Integer\t");
 						output.lexeme.push_back(temp);
 						temp.clear();
 						if (isOperator(arr[i])) {
