@@ -1,0 +1,9 @@
+Tokens			Lexemes
+
+Keyword		=	int
+Identifier	=	number
+Seperator	=	;
+Identifier	=	number
+Operator	=	=
+Integer		=	9
+Seperator	=	;
