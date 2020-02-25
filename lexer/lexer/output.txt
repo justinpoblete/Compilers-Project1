@@ -1,0 +1,32 @@
+Tokens			Lexemes
+
+Keyword		=	int
+Identifier	=	6a
+Operator	=	=
+Integer		=	9
+Seperator	=	;
+Keyword		=	int
+Identifier	=	num1
+Seperator	=	,
+Identifier	=	num2
+Seperator	=	,
+Identifier	=	large$
+Keyword		=	if
+Seperator	=	(
+Identifier	=	num1
+Operator	=	>
+Identifier	=	num2
+Seperator	=	)
+Seperator	=	{
+Identifier	=	large
+Operator	=	=
+Identifier	=	num1$
+Seperator	=	;
+Seperator	=	}
+Keyword		=	else
+Seperator	=	{
+Identifier	=	large
+Operator	=	=
+Identifier	=	num2$
+Seperator	=	;
+Seperator	=	}
